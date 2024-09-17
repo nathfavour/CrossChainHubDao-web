@@ -1,13 +1,19 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { ethers } from 'ethers';
+// import { ethers } from 'ethers';
+
+import { ethers, Contract, utils } from 'ethers';
+
 import { Container, AppBar, Toolbar, Typography, Button, Card, CardContent, TextField, Box, Link } from '@mui/material';
-import Web3Modal from 'web3modal';
+import Web3Modal, { providers } from 'web3modal';
 import Image from 'next/image';
+// import { ethers } from 'ethers';
 
 const Home = () => {
-  const [provider, setProvider] = useState<ethers.providers.Web3Provider | null>(null);
+  // const [provider, setProvider] = useState<ethers.Provider.Web3Provider | null>(null);
+  const [provider, setProvider] = useState<providers.Web3Provider | null>(null);
+
   const [signer, setSigner] = useState<ethers.Signer | null>(null);
   const [carbonCreditContract, setCarbonCreditContract] = useState<ethers.Contract | null>(null);
   const [marketplaceContract, setMarketplaceContract] = useState<ethers.Contract | null>(null);
@@ -16,7 +22,9 @@ const Home = () => {
     const init = async () => {
       const web3Modal = new Web3Modal();
       const instance = await web3Modal.connect();
-      const provider = new ethers.providers.Web3Provider(instance);
+      // const provider = new ethers.Provider.Web3Provider(instance);
+      const providerz = new provider.Web3Provider(instance);
+
       const signer = provider.getSigner();
       setProvider(provider);
       setSigner(signer);
@@ -24,8 +32,8 @@ const Home = () => {
       const carbonCreditAddress = '0xYourCarbonCreditContractAddress';
       const marketplaceAddress = '0xYourMarketplaceContractAddress';
 
-      const carbonCreditAbi = [ /* ABI of CarbonCredit.sol */ ];
-      const marketplaceAbi = [ /* ABI of Marketplace.sol */ ];
+      const carbonCreditAbi: ethers.Interface | ethers.InterfaceAbi = [ /* ABI of CarbonCredit.sol */ ];
+      const marketplaceAbi: ethers.Interface | ethers.InterfaceAbi = [ /* ABI of Marketplace.sol */ ];
 
       const carbonCreditContract = new ethers.Contract(carbonCreditAddress, carbonCreditAbi, signer);
       const marketplaceContract = new ethers.Contract(marketplaceAddress, marketplaceAbi, signer);
