@@ -1,7 +1,12 @@
+
+
+
+
 "use client";
 
 import { useState, useEffect } from 'react';
 // import { ethers } from 'ethers';
+import { parseEther } from 'ethers/lib/utils';
 
 import { ethers, Contract, utils } from 'ethers';
 
@@ -46,12 +51,21 @@ const Home = () => {
   }, []);
 
   
+  // const buyCredits = async (amount: number) => {
+  //   if (marketplaceContract) {
+  //     const tx = await marketplaceContract.buyCredits(amount, { value: ethers.utils.parseEther('0.1') });
+  //     await tx.wait();
+  //   }
+  // };
+
+
   const buyCredits = async (amount: number) => {
     if (marketplaceContract) {
-      const tx = await marketplaceContract.buyCredits(amount, { value: ethers.utils.parseEther('0.1') });
+      const tx = await marketplaceContract.buyCredits(amount, { value: parseEther('0.1') });
       await tx.wait();
     }
   };
+
 
   const sellCredits = async (amount: number) => {
     if (marketplaceContract) {
