@@ -6,7 +6,10 @@
 
 import { useState, useEffect } from 'react';
 // import { ethers } from 'ethers';
-import { parseEther } from 'ethers/lib/utils';
+
+// import { parseEther } from 'ethers/lib/utils';
+
+import { parseEther } from 'ethers';
 
 import { ethers, Contract, utils } from 'ethers';
 
