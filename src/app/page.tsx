@@ -37,6 +37,7 @@ const Home = () => {
     init();
   }, []);
 
+  
   const buyCredits = async (amount: number) => {
     if (marketplaceContract) {
       const tx = await marketplaceContract.buyCredits(amount, { value: ethers.utils.parseEther('0.1') });
