@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 
 import { parseEther } from 'ethers';
 
-import { ethers, Provider } from 'ethers';
+import { ethers } from 'ethers';
 
 import { Container, AppBar, Toolbar, Typography, Button, Card, CardContent, TextField, Box, Link } from '@mui/material';
 import Web3Modal, { providers } from 'web3modal';
@@ -19,7 +19,10 @@ import Image from 'next/image';
 // import { ethers } from 'ethers';
 
 const Home = () => {
-  const [provider, setProvider] = useState<ethers.Provider.Web3Provider | null>(null);
+  // const [provider, setProvider] = useState<ethers.Provider.Web3Provider | null>(null);
+  // const [provider, setProvider] = useState<providers.Web3Provider | null>(null);
+  const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
+
   // const [provider, setProvider] = useState<providers.Web3Provider | null>(null);
 
   const [signer, setSigner] = useState<ethers.Signer | null>(null);
